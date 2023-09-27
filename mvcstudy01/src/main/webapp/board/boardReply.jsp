@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ page import="app.domain.BoardVo" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
- if (session.getAttribute("midx") ==null){
-	 out.println("<script>alert('로그인하셔야합니다.');location.href='"+request.getContextPath()+"/member/memberLogin.do'</script>");	 
- }
- 	BoardVo bv = (BoardVo)request.getAttribute("bv");
+// if (session.getAttribute("midx") ==null){
+//	 out.println("<script>alert('로그인하셔야합니다.');location.href='"+request.getContextPath()+"/member/memberLogin.do'</script>");	 
+// }
+// 	BoardVo bv = (BoardVo)request.getAttribute("bv");
 %>
 
 <!DOCTYPE html>
@@ -13,6 +14,12 @@
 <head>
 <meta charset="utf-8">
 <title>답변</title>
+<c:if test="${sessionScope.midx == null}">
+<script>alert("로그인하셔야 합니다.");
+<c:set var="login" value="${pageContext.request.contextPath}/member/memberLogin.do" />
+location.href="${login}";
+</script>
+</c:if>
 <style type="text/css">
 table {
 	margin : auto;
@@ -71,7 +78,7 @@ function check(){
 	}	
 	
 	//처리하기위해 이동하는 주소
-	fm.action ="<%=request.getContextPath()%>/board/boardReplyAction.do";  
+	fm.action ="${pageContext.request.contextPath}/board/boardReplyAction.do";  
 	fm.method = "post";  //이동하는 방식  get 노출시킴 post 감추어서 전달
 	//fm.enctype= "multipart/form-data";
 	fm.submit(); //전송시킴
@@ -83,10 +90,10 @@ function check(){
 <h3>답변</h3>
 <hr>
 <form name="frm" class="write12">
-<input type="hidden" name="bidx" value="<%=bv.getBidx()%>">
-<input type="hidden" name="originbidx" value="<%=bv.getOriginbidx()%>">
-<input type="hidden" name="depth" value="<%=bv.getDepth()%>">
-<input type="hidden" name="level_" value="<%=bv.getLevel_()%>">
+<input type="hidden" name="bidx" value="${bv.bidx}">
+<input type="hidden" name="originbidx" value="${bv.originbidx}">
+<input type="hidden" name="depth" value="${bv.depth}">
+<input type="hidden" name="level_" value="${bv.level_}">
 
 <table>
 	<tr>

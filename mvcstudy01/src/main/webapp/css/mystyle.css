@@ -1,0 +1,26 @@
+@charset "utf-8";
+
+body {
+	background-color: navy; color: yellow;
+	margin-left:30px; margin-right:30px;
+}
+h3 {text-align:center; color:white;}
+h3:first-letter {color:red;}
+hr { border: 2px solid white;}
+span {color:red;}
+.name {color:orange;}	/*class 셀렉터*/
+#list {background: red;}	/*id 셀렉터*/
+#question{color : white;}
+div > strong { background-color:purple;}	/*자식셀렉터*/
+ul strong { color : dodgerblue;}	/*자손*/
+
+input[type=text] {color : red;}
+
+a:visited { background-color : yellow;}
+li:hover {background : yellowgreen;}  /*한번 방문했다면*//*마우스를 올리면*/
+
+a:link {color:blue;} /*링크가 걸려있다면*/
+
+a{color: inerity;  /*링크기능초기화*/
+	text-decoration:none;} /*밑줄제거*/
+	
